@@ -1,0 +1,106 @@
+{% extends "masterpage.html" %}
+{% load static %}
+{% block content %}
+<main>
+    <div class="blog-banner">
+        <div class="bg"><img src="{% static 'images/blog-banner.jpg' %}" alt=""></div>
+        <div class="banner-wrapper">
+            <div class="content">
+                <h1>Gallery</h1>
+            </div>
+        </div>
+    </div>
+    <section>
+        <div class="gallerySecA">
+            <div class="container">
+                <div class="flex">
+                    <div class="colA">
+                        <ul class="service-tab">
+                            <li class="active" data-attr="All">All</li>
+                            {% for service in services %}
+                                <li data-attr="{{ service.title }}">{{ service.title }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="colB">
+                        <div class="service-tab-content">
+                            <div class="service-tab-wrap">
+                                {% for image in images %}
+                                    <div class="col" data-attr="{{ image.service.title }}">
+                                        <h6 class="title">{{ image.Gallery_Title }}</h6>
+                                        <div class="img-grid">
+                                            {% for gallery_image in image.galleryimage_set.all %}
+                                                <div class="col-md">
+                                                    <a href="{{ gallery_image.image.url }}" class="gallery-btn" data-fancybox="{{ gallery_image.image.url }}">
+                                                        <img src="{{ gallery_image.image.url }}" alt="">
+                                                    </a>
+                                                    <img src="{% static 'icons/gallery.png' %}" alt="" class="view-gallr">
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                                <!-- {% for image in images %}
+                                    <div class="col" data-attr="{{ image.service.title }}">
+                                        {% with first_image=image.galleryimage_set.first %}
+                                            <a href="{{ first_image.image.url }}" class="gallery-btn" data-fancybox="{{ image.Gallery_Title }}">
+                                                <figure><img src="{{ first_image.image.url }}" alt=""></figure>
+                                                <h6 class="title">{{ image.Gallery_Title }}</h6>
+                                                <img src="{% static 'icons/gallery.png' %}" alt="" class="view-gallr">
+                                            </a>
+                                        {% endwith %}
+                                    </div>
+                                {% endfor %} -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+
+
+
+<script type="text/javascript" src="{% static 'js/fancybox.js' %}"></script>
+<script type="text/javascript">
+    $(function(){
+        var headerheight =  $('header').innerHeight();
+        $('.service-tab li').click(function(){
+            var datattr = $(this).attr('data-attr');
+            $('body,html').animate({
+                scrollTop: $('.gallerySecA').offset().top - headerheight
+            }, 1000);            
+            $(this).addClass('active').siblings().removeClass('active');
+            if (datattr === 'All') {
+                $('.service-tab-content .service-tab-wrap .col').show();
+            } else {
+                $('.service-tab-content .service-tab-wrap .col').hide();
+                $('.service-tab-content .service-tab-wrap .col[data-attr="'+ datattr +'"]').show();
+            }
+        })
+        $("[data-fancybox]").fancybox({
+            animationEffect: "fade",
+            transitionEffect: "slide",
+            loop: true,
+            buttons: [
+                "thumbs",
+                "close",
+            ],
+            btnTpl: {
+                close: '<button data-fancybox-close class="fancybox-button fancybox-button--close" title="Custom Close Button">' +
+                    '<img src="{% static "icons/close-white.png" %}"' +
+                    '</button>',
+                arrowLeft: '<button data-fancybox-prev class="fancybox-button fancybox-button--arrow_left" title="Previous">' +
+                    '<img src="{% static "icons/prev2-white.png" %}" alt="Previous">' +
+                    '</button>',
+                arrowRight: '<button data-fancybox-next class="fancybox-button fancybox-button--arrow_right" title="Next">' +
+                    '<img src="{% static "icons/next2-white.png" %}" alt="Next">' +
+                    '</button>'
+            },
+        });
+    })
+</script>
+
+{% endblock %}

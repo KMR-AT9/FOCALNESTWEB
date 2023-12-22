@@ -1,0 +1,101 @@
+{% extends "masterpage.html" %}
+{% load static %}
+{% block content %}
+<main>
+    <div class="blog-banner blog-detail-banner">
+        <div class="bg"><img src="{{ post.Service_image.url }}" alt=""></div>
+        <div class="banner-wrapper">
+            <div class="content">
+                <h1>{{ post.title }}</h1>
+            </div>
+        </div>
+    </div>
+    <section>
+        <div class="blogDetailSecA serviceDetailSecA">
+            <div class="container">
+                <div class="flex">
+                    <div class="colA">
+                        <div class="content">
+                            {{ post.content|safe }}
+                        </div>
+                    </div>
+                    <div class="colB">
+                        <h4>Gallery</h4>
+                        <div class="gallery-wrap">
+                            {% for gallery in galleries %}
+                                <div class="col">
+                                    {% with first_image=gallery.galleryimage_set.first %}
+                                        <a href="{{ first_image.image.url }}" class="gallery-btn" data-fancybox="{{ gallery.Gallery_Title }}">
+                                            <figure><img src="{{ first_image.image.url }}" alt=""></figure>
+                                            <h6 class="title">{{ gallery.Gallery_Title }}</h6>
+                                            <img src="{% static 'icons/gallery.png' %}" alt="" class="view-gallr">
+                                        </a>
+                                    {% endwith %}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="blogListingSecB serviceListingSecB">
+            <div class="container">
+                <div class="heading text-center">
+                    <h3>More <span>Services</span></h3>
+                </div>
+                <div class="more-service-slider owl-carousel">
+                    {% for more_post in more_posts %}
+                        <div class="col">
+                            <a href="{% url 'FocalNest:service_detail' Title_url=more_post.Title_Url %}">
+                                <figure><img src="{{ more_post.Service_image.url }}" alt=""></figure>
+                                <figcaption>
+                                    <h4 class="title">{{more_post.title}}</h4>
+                                    <p>{{ more_post.Description }}</p>
+                                    <button class="explr-btn">Explore Now</button>
+                                </figcaption>
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+{% for gallery in galleries %}
+    <div class="gallery-box" style="display: none;">
+        {% for image in gallery.galleryimage_set.all|slice:"1:" %}
+            <a data-fancybox="{{ gallery.Gallery_Title }}" href="{{ image.image.url }}">
+                <img src="{{ image.image.url }}" alt="">
+            </a>
+        {% endfor %}
+    </div>
+{% endfor %}
+
+<script type="text/javascript" src="{% static 'js/fancybox.js' %}"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("[data-fancybox]").fancybox({
+            animationEffect: "fade",
+            transitionEffect: "slide",
+            loop: true,
+            buttons: [
+                "thumbs",
+                "close",
+            ],
+            btnTpl: {
+                close: '<button data-fancybox-close class="fancybox-button fancybox-button--close" title="Custom Close Button">' +
+                    '<img src="{% static "icons/close-white.png" %}"' +
+                    '</button>',
+                arrowLeft: '<button data-fancybox-prev class="fancybox-button fancybox-button--arrow_left" title="Previous">' +
+                    '<img src="{% static "icons/prev2-white.png" %}" alt="Previous">' +
+                    '</button>',
+                arrowRight: '<button data-fancybox-next class="fancybox-button fancybox-button--arrow_right" title="Next">' +
+                    '<img src="{% static "icons/next2-white.png" %}" alt="Next">' +
+                    '</button>'
+            },
+        });
+    });
+</script>
+{% endblock %}

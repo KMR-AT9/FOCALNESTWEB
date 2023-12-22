@@ -1,0 +1,396 @@
+{% extends "masterpage.html" %}
+{% load static %}
+{% block content %}
+<main>
+    <div class="banner-home">
+        <div class="bg">
+            <video autoplay muted loop="true" src="{% static 'video/video.mp4' %}"></video>
+        </div>
+        <div class="banner-wrapper">
+            <div class="container">
+                <div class="content">
+                    <h1>Capturing Moments, Creating Memories: A Photographer's Journey</h1>
+                    <p>Total Size: {{ total_size_kb }} KB</p>
+                    <p>Used Size: {{ used_size_kb }} KB</p>
+                    <p>Available Size: {{ available_size_kb }} KB</p>
+                    <div class="down-arrow invert">
+                        <img src="{% static 'icons/down-arrow.png' %} " alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section>
+        <div class="home-secA">
+            <div class="secA-wrapper">
+                <div class="flex">
+                    <div class="colA">
+                        <div class="content">
+                            <div class="heading">
+                                <h3>
+                                    <span>Portfolio</span> Highlights
+                                </h3>
+                            </div>
+                            <p>Discover our captivating collection of evocative landscapes, enchanting portraits,
+                                and vibrant events, all captured with passion and creativity by our skilled
+                                photographers.</p>
+                            <div class="explore-more-btn invert">
+                                <a href="">Explore More
+                                    <img src="{% static 'icons/rightarrowcontact.png' %}" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="colB">
+                        <div class="showcase-slider owl-carousel">
+                            <div class="item">
+                                <figure>
+                                    <img src="{% static 'images/home/img-1.jpg' %}" alt="">
+                                </figure>
+                            </div>
+                            <div class="item">
+                                <figure>
+                                    <img src="{% static 'images/home/img-2.jpg' %}" alt="">
+                                </figure>
+                            </div>
+                            <div class="item">
+                                <figure>
+                                    <img src="{% static 'images/home/img-3.jpg' %}" alt="">
+                                </figure>
+                            </div>
+                            <div class="item">
+                                <figure>
+                                    <img src="{% static 'images/home/img-4.jpg' %}" alt="">
+                                </figure>
+                            </div>
+                            <div class="item">
+                                <figure>
+                                    <img src="{% static 'images/home/img-1.jpg' %}" alt="">
+                                </figure>
+                            </div>
+                            <div class="item">
+                                <figure>
+                                    <img src="{% static 'images/home/img-2.jpg' %}" alt="">
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="home-secB">
+            <div class="container">
+                <div class="heading size48 text-center">
+                    <h3>About
+                        <span>Us</span>
+                    </h3>
+                </div>
+                <div class="flex">
+                    <div class="colA">
+                        <div class="content">
+                            <p>We are a passionate team of skilled photographers dedicated to freezing moments in
+                                time, capturing emotions, and preserving memories that last a lifetime.</p>
+                            <div class="counter_sec">
+                                <div class="count-info">
+                                    <h3>
+                                        <span class="count" data-count="100"></span>+
+                                    </h3>
+                                    <p>Total Photoshoots</p>
+                                </div>
+                                <div class="count-info">
+                                    <h3>
+                                        <span class="count" data-count="150"></span>+
+                                    </h3>
+                                    <p>Happy Clients</p>
+                                </div>
+                                <div class="count-info">
+                                    <h3>
+                                        <span class="count" data-count="1000"></span>+
+                                    </h3>
+                                    <p>Stunning Photos</p>
+                                </div>
+                                <div class="count-info">
+                                    <h3>
+                                        <span class="count" data-count="184"></span>+
+                                    </h3>
+                                    <p>Years of Experience</p>
+                                </div>
+                                <div class="count-info">
+                                    <h3>
+                                        <span class="count" data-count="50"></span>+
+                                    </h3>
+                                    <p>Memorable Events</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="colB">
+                        <div class="photo-card">
+                            <div class="card">
+                                <img src="{% static 'icons/camera.png' %}" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="home-secC">
+            <div class="bg">
+                <img src="{% static 'images/home/img.jpg' %}" alt="">
+            </div>
+            <div class="secD-wrapper">
+                <div class="container">
+                    <div class="heading">
+                        <h3><em>Echoes of Innocence </em>Giggles and Grins in Focus</em></h3>
+                        <div class="explore-more-btn">
+                            <a href="">Explore More
+                                <img src="{% static 'icons/rightarrowcontact.png' %}" alt="">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="home-secD">
+            <div class="container">
+                <div class="heading text-center">
+                    <h3>Our
+                        <span>Services</span>
+                    </h3>
+                </div>
+                <div class="service-slider owl-carousel">
+                    {% for service in services %}
+                        <div class="col-md">
+                            <div class="card">
+                                <a href={% url 'FocalNest:service_detail' Title_url=service.Title_Url %}>
+                                    <div class="ico">
+                                        <img src="{{ service.Service_icon.url }}" alt="">
+                                    </div>
+                                        <small class="listin">
+                                            {% if forloop.counter < 10 %}0{{ forloop.counter }}
+                                            {% else %}{{ forloop.counter }}
+                                            {% endif %}
+                                        </small>
+                                    <h5>{{ service.title }}</h5>
+                                    <p>{{ service.Description }}</p>
+                                    <span class="read-mr">Read More</span>
+                                </a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="explore-more-btn invert">
+                    <a href="/service">Explore More
+                        <img src="{% static 'icons/rightarrowcontact.png' %}" alt="">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="home-secE">
+            <div class="flex">
+                <div class="colA">
+                    <div class="heading size48">
+                        <h3>Client <br><span>Testimonials</span>
+                        </h3>
+                        <p>Read what clients have to say about our photography – a collection of authentic voices."
+                        </p>
+                    </div>
+                </div>
+                <div class="colB">
+                    <div class="client-slider owl-carousel">
+                        <div class="item">
+                            <div class="col">
+                                <figure><img src="{% static 'images/clients/img-1.jpg' %}" alt=""></figure>
+                                <div class="content">
+                                    <div class="wrap">
+                                        <p>I had the pleasure of working with FocalNest for a special occasion,
+                                            and the experience was nothing short of
+                                            remarkable. Their ability to capture the true essence of each moment was
+                                            awe-inspiring. The photographs transported me
+                                            back to those cherished memories every time I look at them. FocalNest
+                                            is a true artist behind the lens.</p>
+                                        <p>I had the pleasure of working with FocalNest for a special occasion,
+                                            and the experience was nothing short of
+                                            remarkable. Their ability to capture the true essence of each moment was
+                                            awe-inspiring. The photographs transported me
+                                            back to those cherished memories every time I look at them. FocalNest
+                                            is a true artist behind the lens.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="col">
+                                <figure><img src="{% static 'images/clients/img-2.jpg' %}" alt=""></figure>
+                                <div class="content">
+                                    <div class="wrap">
+                                        <p>When I hired FocalNest, I was expecting great photos, but what I
+                                            received was beyond my wildest imagination. FocalNest's attention to
+                                            detail and unique perspective turned ordinary
+                                            scenes into extraordinary works of art. Their
+                                            dedication to getting the perfect shot was evident throughout the entire
+                                            process. I couldn't be happier with the
+                                            results!</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="col">
+                                <figure><img src="{% static 'images/clients/img-3.jpg' %}" alt=""></figure>
+                                <div class="content">
+                                    <div class="wrap">
+                                        <p>Finding a photographer who genuinely cares about their craft and their
+                                            clients is rare. FocalNest is one of those
+                                            gems. Their passion for photography shines through in every shot they
+                                            take. They have an incredible ability to capture
+                                            emotions and tell a story through their photographs. It was an absolute
+                                            pleasure working with FocalNest.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="col">
+                                <figure><img src="{% static 'images/clients/img-4.jpg' %}" alt=""></figure>
+                                <div class="content">
+                                    <div class="wrap">
+                                        <p>As someone who had a specific vision in mind for their photoshoot, I was
+                                            amazed at how FocalNest not only understood
+                                            my ideas but turned them into stunning visual realities. Their creative
+                                            flair and technical skill are unparalleled. The
+                                            photographs they delivered surpassed my expectations, and I'm trulys
+                                            grateful for their dedication and artistry..</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="col">
+                                <figure><img src="{% static 'images/clients/img-5.jpg' %}" alt=""></figure>
+                                <div class="content">
+                                    <div class="wrap">
+                                        <p>The ability to capture emotions in a photograph is a gift, and FocalNest
+                                            possesses this gift in abundance. They have
+                                            an incredible knack for freezing moments of joy, love, and happiness in
+                                            their work. Each photograph tells a story, and
+                                            I'm in awe of how FocalNest can encapsulate so much feeling in a
+                                            single frame.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="home-secF">
+            <div class="container">
+                <div class="heading size48 text-center">
+                    <img src="{% static 'images/focalnest.png' %}" alt="">
+                    <h3>
+                        <span>Contact</span> Us
+                    </h3>
+                </div>
+                {% comment %} <div class="form">
+                    <div class="flex">
+                        <div class="form-group">
+                            <input type="text" class="form-control">
+                            <label for="">Name</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control">
+                            <label for="">Email</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control">
+                            <label for="">Phone</label>
+                        </div>
+                        <div class="form-group">
+                            <select class="selectbx" name="" id="">
+                                <option value="">I'm Intrested in</option>
+                                <option value="portrait-photography">Portrait Photography</option>
+                                <option value="wedding-photography">Wedding Photography</option>
+                                <option value="product-photography">Product Photography</option>
+                                <option value="fashion-photography">Fashion Photography</option>
+                            </select>
+                        </div>
+                        <div class="form-group flex100">
+                            <textarea class="form-control" name="" id="" cols="30" rows="10"></textarea>
+                            <label class="txtarlbl" for="">Message</label>
+                        </div>
+                    </div>
+                    <div class="sbmit-btn">
+                        <input type="submit" value="Submit">
+                    </div>
+                </div> {% endcomment %}
+                <div class="form">
+                    <form method="post" action="">
+                        {% csrf_token %}
+                        <div class="flex">
+                            <div class="form-group">
+                                {{ form.name }}
+                                <label for="">Name</label>
+                            </div>
+                            <div class="form-group">
+                                {{ form.email }}
+                                <label for="">Email</label>
+                            </div>
+                            <div class="form-group">
+                                {{ form.phone }}
+                                <label for="">Phone</label>
+                            </div>
+                            <div class="form-group">
+                                {{ form.interested_in }}
+                            </div>
+                            <div class="form-group flex100">
+                                {{ form.message }}
+                                <label class="txtarlbl" for="">Message</label>
+                            </div>
+                        </div>
+                        <div class="sbmit-btn">
+                            <input type="submit" value="Submit">
+                        </div>
+                    </form>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+</main>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var counted = 0;
+        var lastScrollTop = 0;
+        $(window).scroll(function () {
+            var window_height = $(this).scrollTop();
+            $('.counter_sec .count-info').each(function () {
+                var count = $(this).children('h3').children('span.count'), countTo = count.attr('data-count'), countNum = count.text()
+                var onTop = $('.home-secA').offset().top
+                if (window_height > onTop) {
+                    $({ countNum }).animate({ countNum: countTo }, {
+                        duration: 1000,
+                        easing: 'swing',
+                        step: function () {
+                            count.text(Math.floor(this.countNum));
+                        },
+                        complete: function () {
+                            count.text(this.countNum);
+                        }
+                    });
+                }
+            });
+        })
+    })
+</script>
+{% endblock %}

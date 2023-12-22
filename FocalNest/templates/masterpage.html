@@ -1,0 +1,120 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Focal Nest{% endblock %}</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'icons/favicon.png' %}">
+    <link rel="stylesheet" href="{% static 'sass/style.css' %}">
+    <link rel="stylesheet" href="{% static 'fonts/fonts.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/fancybox.css' %}">
+    <script type="text/javaScript" src="{% static 'js/jquery-3.7.0.min.js' %}"></script>
+</head>
+
+<body>
+    <header>
+        <div class="container-fluid">
+            <div class="header-wrapper">
+                <div class="flex">
+                    <div class="colA">
+                        <a href="/">
+                            <img src="{% static 'images/logo.png' %}" alt="">
+                        </a>
+                    </div>
+                    <div class="colB">
+                        <nav>
+                            <ul>
+                                <li>
+                                    <a href="">About Us</a>
+                                </li>
+                                <li>
+                                    <a href="/service">Services</a>
+                                </li>
+                                <li>
+                                    <a href="/gallery">Gallery</a>
+                                </li>
+                                <li>
+                                    <a href="/blog">Blogs</a>
+                                </li>
+                                <li>
+                                    <a href="">Contact Us</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="colC">
+                        <button class="enquire-btn">Enquire Now</button>
+                        <div class="ham-menu">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    {% block content %}
+    {% endblock %}
+    <footer>
+        <div class="container-fluid">
+            <div class="footer-wrapper">
+                <div class="flex">
+                    <div class="colA">
+                        <div class="logo"><a href="/"><img src="{% static 'images/logo.png' %}" alt=""></a></div>
+                    </div>
+                    <div class="colB">
+                        <div class="col">
+                            <h4>Other Pages</h4>
+                            <ul>
+                                <li>
+                                    <a href="">About Us</a>
+                                </li>
+                                <li>
+                                    <a href="/service">Services</a>
+                                </li>
+                                <li>
+                                    <a href="/gallery">Gallery</a>
+                                </li>
+                                <li>
+                                    <a href="/blog">Blogs</a>
+                                </li>
+                                <li>
+                                    <a href="">Contact Us</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col">
+                            <h4>Services</h4>
+                            <ul>
+                                {% for service in services %}
+                                    <li><a href="{% url 'FocalNest:service_detail' Title_url=service.Title_Url %}">{{ service.title }}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <div class="col">
+                            <h4>Blogs</h4>
+                            <ul>
+                                {% for blog in recentblogs %}
+                                    <li><a href="{% url 'FocalNest:blog_detail' Title_url=blog.Title_url %}">{{ blog.Blog_title }}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="colC">
+                        <div class="btn wtsp-button">
+                            <a href=""><img src="{% static 'icons/whatsapp.png' %}" alt="">Chat with us!</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+<script type="text/javaScript" src="{% static 'js/main.js' %}"></script>
+<script type="text/javaScript" src="{% static 'js/owl.carousel.min.js' %}"></script>
+
+</html>

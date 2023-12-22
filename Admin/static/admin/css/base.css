@@ -1,0 +1,81 @@
+*,*:before,:after{
+  margin: 0;
+  padding: 0;
+}
+
+:root{
+  --white: #fff;
+  --black: #000;
+}
+
+html[data-theme="light"],:root{
+  --primary: #066fc1;
+}
+
+.skip-to-content-link,#nav-filter,.addlink,.breadcrumbs,#toggle-nav-sidebar,.object-tools{
+  display: none;
+}
+table{
+  width: 100%;
+  border-spacing: 0px;
+}
+.current-app table tr,th,td,.app-auth table tr,th,td{
+  text-align: left;
+  background: var(--primary);
+  padding: 4px 12px;
+}
+
+#result_list tr,th,td{
+  background: none;
+}
+a[href]{
+  color: var(--black);
+  text-decoration: none;
+}
+
+#header{
+  background: var(--primary);
+  padding: 10px 50px;
+}
+#header img{
+  filter: invert(1) brightness(5);
+  width: 160px;
+}
+#branding{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#branding .custom-hd-nav button{
+  appearance: none;
+  border: none;
+  background: none;
+  color: var(--white);
+  font-family: inherit;
+  display: flex;
+  align-items: center;
+  gap: 0 6px;
+  font-size: inherit;
+  cursor: pointer;
+}
+#branding .custom-hd-nav button svg path{
+  fill: var(--white);
+}
+
+
+.module table caption{
+  display: none !important;
+}
+
+#main{
+  --secleft: 20%;
+  display: flex;
+  flex-wrap: wrap;
+}
+#main #nav-sidebar{
+  width: var(--secleft);
+}
+#main #content-start{
+  width: calc(100% - var(--secleft));
+}

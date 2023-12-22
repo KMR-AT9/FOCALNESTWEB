@@ -1,0 +1,14 @@
+{% extends "masterpage.html" %}
+{% load static %}
+{% block content%}
+<main>
+    <div class="blog-banner something-went-wrong-banner">
+        <div class="bg"><img src="{% static 'images/404-image.jpg' %}" alt=""></div>
+    </div>
+</main>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('header').addClass("header-fixed")
+    })
+</script>
+{% endblock %}

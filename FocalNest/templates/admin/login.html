@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        *,
+        *::before,
+        *::after {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            font-family: "Poppins", sans-serif;
+            font-size: 16px;
+            line-height: 24px;
+            height: 100%;
+            --primary: #066fc1;
+            --white: #fff;
+            --black: #000;
+            --lightblack: #00000066;
+            --lightgrey: #8d9090;
+            --logosize: 130px;
+            --paddingleftinput: 15px;
+        }
+        .login-form{
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            translate: 0 -50%;
+            padding: 20px;
+            padding-bottom: 40px;
+            max-width: 400px;
+            margin: 0 auto;
+            border-radius: 8px;
+            border: 1px solid var(--lightblack);
+            box-shadow: rgba(60, 64, 67, 0.3) 0px 0px 2px 0px, rgba(60, 64, 67, 0.15) 0px 0px 6px 2px;
+        }
+        .login-form .logo-login{
+            display: block;
+            max-width: var(--logosize);
+            margin: 0 auto 20px;
+        }
+        .login-form .login-input{
+            position: relative;
+        }
+        .login-form .login-input .form-group{
+            position: relative;
+        }
+        .login-form .login-input .form-group:last-child {
+            margin-top: 12px;
+        }        
+        .login-form .login-input .form-group input{
+            position: relative;
+            width: 100%;
+            padding: 12px 0;
+            padding-left: var(--paddingleftinput);
+            font-family: inherit;
+            font-size: inherit;
+            font-weight: inherit;
+            border: 1px solid var(--lightblack);
+            border-radius: 4px;
+        }
+        .login-form .login-input .form-group input:focus{
+            outline: none;
+        }
+        .login-form .login-input .form-group label{
+            position: absolute;
+            z-index: 1;
+            line-height: 1;
+            top: 50%;
+            left: var(--paddingleftinput);
+            translate: 0 -50%;
+            color: #343434;
+            transition: .4s ease;
+            pointer-events: none;
+            user-select: none;
+        }
+        .login-form .login-input .form-group.is-focus label{
+            top: 0px;
+            font-size: 14px;
+            color: var(--primary);
+            background: var(--white);
+            padding: 0 4px;
+        }
+
+        .login-form .login-input .form-group .password-toggle-btn{
+            background: none;
+            appearance: none;
+            border: none;
+            position: absolute;
+            top: 16px;
+            right: var(--paddingleftinput);
+            opacity: 0;
+            pointer-events: none;
+            cursor: pointer;
+        }
+
+        .login-form .login-input .form-group .password-toggle-btn.is-visible{
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .login-form .login-input .form-group .password-toggle-btn .btn:not(.show){
+            display: none;
+        }
+
+        .login-form .errornote{
+            text-align: center;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            line-height: 1;
+            padding-bottom: 12px;
+        }
+        .login-form .submit-btn{
+            font-family: inherit;
+            font-weight: inherit;
+            font-size: inherit;
+            color: var(--white);
+            background: var(--primary);
+            width: 100%;
+            padding: 10px 0;
+            text-align: center;
+            border: 1px solid var(--primary);
+            cursor: pointer;
+            border-radius: 4px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="login-form" class="login-form">
+        <img src="{% static 'images/logo.png' %}" alt="" class="logo-login">
+        <form id="form1" method="post" action="{% url 'admin:login' %}">
+            {% csrf_token %}
+            
+            <!-- Customize labels for username and password -->
+            <div class="login-input">
+                <div class="form-group">
+                    <label for="{{ form.username.id_for_label }}">{{ form.username.label }}</label>
+                    {{ form.username }}
+                </div>
+                <div class="form-group pswrd-field">
+                    <label for="{{ form.password.id_for_label }}">{{ form.password.label }}</label>
+                    {{ form.password }}
+                    <button type="button" class="password-toggle-btn" onclick="togglePasswordVisibility()">
+                        <div class="btn view-btn-show show">
+                            <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1 12C1 12 5 4 12 4C19 4 23 12 23 12" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M1 12C1 12 5 20 12 20C19 20 23 12 23 12" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <circle cx="12" cy="12" r="3" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="btn view-btn-hide">
+                            <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2 2L22 22" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M6.71277 6.7226C3.66479 8.79527 2 12 2 12C2 12 5.63636 19 12 19C14.0503 19 15.8174 18.2734 17.2711 17.2884M11 5.05822C11.3254 5.02013 11.6588 5 12 5C18.3636 5 22 12 22 12C22 12 21.3082 13.3317 20 14.8335" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M14 14.2362C13.4692 14.7112 12.7684 15.0001 12 15.0001C10.3431 15.0001 9 13.657 9 12.0001C9 11.1764 9.33193 10.4303 9.86932 9.88818" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                    </button>
+                </div>
+            </div>
+            <input class="submit-btn" type="submit" value="Log in" />
+            {% if redirect_field_value %}
+                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+            {% endif %}
+            {% if form.errors %}
+                <p class="errornote" style="color: red;">Invalid Credentials</p>
+            {% endif %}
+        </form>
+    </div>
+</body>
+<script type="text/javascript">
+    function togglePasswordVisibility() {
+        var passwordInput = document.querySelector('.form-group.pswrd-field input');
+        var showpassword = document.querySelector('.view-btn-show');
+        var hidepassword = document.querySelector('.view-btn-hide');
+
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            showpassword.classList.remove('show');
+            hidepassword.classList.add('show');
+        } else {
+            passwordInput.type = 'password';
+            showpassword.classList.add('show');
+            hidepassword.classList.remove('show');
+        }
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.form-group input').forEach(function(input) {
+            var label = input.parentElement;
+            var isEmpty = input.value === '';
+            label.classList.toggle('is-focus', !isEmpty);
+        });
+    
+        document.querySelectorAll('.form-group input, .form-group textarea, .form-group select').forEach(function(element) {
+            element.addEventListener('focus', function() {
+                element.parentElement.classList.add('is-focus');
+            });
+    
+            element.addEventListener('focusout', function() {
+                var label = element.parentElement;
+                var isEmpty = element.value === '';
+                label.classList.toggle('is-focus', !isEmpty);
+            });
+        });
+    
+        if (document.querySelector('.form-group input').value === '') {
+            document.querySelector('.form-group input').parentElement.classList.add('is-focus');
+        }
+    
+        document.getElementById('form1').addEventListener('submit', function(event) {
+            var form = event.target;
+            if (!form.checkValidity()) {
+                event.preventDefault();
+                document.querySelectorAll('.form-group input').forEach(function(input) {
+                    input.value = '';
+                });
+            }
+        });
+        
+
+        var passwordInput = document.querySelector('.form-group input[type="password"]');
+        var passwordToggleBtn = document.querySelector('.password-toggle-btn');
+        togglePasswordButtonVisibility();
+        passwordInput.addEventListener('input', togglePasswordButtonVisibility);
+        function togglePasswordButtonVisibility() {
+            if (passwordInput.value !== '') {
+                passwordToggleBtn.classList.add('is-visible');
+            } else {
+                passwordToggleBtn.classList.remove('is-visible');
+            }
+        }
+    });
+    
+</script>
+</html>

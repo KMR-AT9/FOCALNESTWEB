@@ -1,0 +1,30 @@
+{% extends "masterpage.html" %}
+{% load static %}
+{% block content %}
+<main>
+    <div class="blog-banner">
+        <div class="bg"><img src="{% static 'images/blog-banner.jpg' %}" alt=""></div>
+        <div class="banner-wrapper">
+            <div class="content">
+                <h1>Blogs</h1>
+            </div>
+        </div>
+    </div>
+    <section>
+        <div class="blogListingSecA">
+            <div class="container">
+                <div class="flex">
+                    {% for post in blogs %}
+                    <div class="col">
+                        <a href="{% url 'FocalNest:blog_detail' Title_url=post.Title_url %}">
+                            <figure><img src="{{ post.image.url }}" alt=""></figure>
+                            <figcaption>{{ post.Blog_title }}</figcaption>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %}

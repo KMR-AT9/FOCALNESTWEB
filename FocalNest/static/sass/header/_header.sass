@@ -1,0 +1,112 @@
+header
+    position: fixed
+    top: 0
+    left: 0
+    right: 0
+    z-index: 3
+    transition: .5s ease
+    backdrop-filter: blur(7px)
+    background: $White
+    &::before
+        content: ""
+        position: absolute
+        left: 0
+        top: 0
+        right: 0
+        height: 0
+        transition: .5s ease
+    &.header-fixed
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px
+        &::before
+            height: 100%
+    .header-wrapper
+        position: relative
+        z-index: 1
+        padding: 18px 0
+        transition: .5s ease
+        .flex
+            justify-content: space-between
+            .colA
+                flex: 0 1 13%
+                max-width: 13%
+                width: 100%
+            .colB
+                flex: 1
+                width: 100%
+                display: flex
+                align-items: center
+                flex-wrap: wrap
+                justify-content: flex-end
+                nav
+                    flex: 0 1 max-content
+                    max-width: max-content
+                    width: 100%
+                    margin-right: 25px
+                    ul
+                        li
+                            display: inline-block
+                            a
+                                color: $Black
+                                font-weight: 400
+                                &:hover
+                                    color: $Blue
+                            &:not(:first-child)
+                                margin-left: 20px
+                .social-links
+                    flex: 0 1 max-content
+                    max-width: max-content
+                    ul
+                        li
+                            display: inline-block
+                            a
+                                display: block
+                                border: 1px solid none
+                                background: none
+                                svg
+                                    height: 22px
+                                    width: 22px
+                                    transition: .5s ease
+                                    path
+                                        transition: .5s ease
+                                        fill: $Black
+                                &:hover
+                                    svg
+                                        path
+                                            fill: $Blue
+                            &:not(:first-child)
+                                margin-left: 15px
+                            &:first-child
+                                a
+                                    svg
+                                        width: 20px
+                                        height: 20px
+            .colC
+                display: flex
+                align-items: center
+                gap: 0 25px
+                button.enquire-btn
+                    appearance: none
+                    background: $Blue
+                    color: $White
+                    font-family: inherit
+                    font-size: inherit
+                    font-weight: 500
+                    padding: 5px 26px
+                    border: 1px solid $Blue
+                    border-radius: 4px
+                    cursor: pointer
+                    transition: .5s ease
+                    &:hover
+                        background: none
+                        color: $Blue
+                .ham-menu
+                    width: 34px
+                    display: flex
+                    flex-direction: column
+                    gap: 6px 0
+                    cursor: pointer
+                    span
+                        display: block
+                        height: 2px
+                        background: $Black
+                        width: 100%

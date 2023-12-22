@@ -1,0 +1,45 @@
+footer
+    background: $Blue
+    .footer-wrapper
+        padding: 45px 0
+    .flex
+        .colA
+            flex: 0 1 auto
+            img
+                filter: invert(1) brightness(10)
+        .colB
+            flex: 1
+            display: grid
+            padding-left: 8rem
+            grid-template-columns: repeat(3,1fr)
+            h4
+                color: $White
+                font-size: 22px
+                font-weight: 500
+                margin-bottom: 15px
+            ul
+                li
+                    a
+                        color: $White
+        .colC
+            flex: 0 1 auto
+            .btn
+                a
+                    color: $Black
+                    background: $White
+                    display: flex
+                    align-items: center
+                    gap: 0 10px
+                    padding: 8px 30px
+                    border-radius: 8px
+                    transition: .4s ease
+                    img
+                        width: 20px 
+                        transition: .4s ease
+                &.wtsp-button
+                    a
+                        &:hover
+                            background: #25D366
+                            color: $White
+                            img
+                                filter: invert(1)

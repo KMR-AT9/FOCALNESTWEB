@@ -1,0 +1,93 @@
+.gallerySecA
+    --varpaddingsec: 75px
+    padding: var(--varpaddingsec) 0
+    min-height: calc(100vh - var(--headerheight))
+    max-height: 100%
+    .flex
+        .colA
+            flex: 0 1 20%
+            height: fit-content
+            position: sticky
+            top: Calc(20px + var(--headerheight))
+            ul.service-tab
+                li
+                    font-size: 20px
+                    position: relative
+                    cursor: pointer
+                    &::before
+                        content: ""
+                        position: absolute
+                        top: 0
+                        left: -30px
+                        bottom: 0
+                        border-left: 4px solid $Blue
+                        border-top: 4px solid transparent
+                        border-bottom: 4px solid transparent
+                        opacity: 0
+                        transition: .5s ease
+                    &:not(:last-child)
+                        margin-bottom: 12px
+                    &.active
+                        color: $Blue
+                        &::before
+                            opacity: 1
+        .colB
+            flex: 1
+            .service-tab-wrap
+                .col
+                    &:not(:last-child)
+                        margin-bottom: 30px
+                    .title
+                        font-size: 20px
+                        font-weight: 500
+                        margin-bottom: 20px
+                        padding-left: 10px
+                        border-left: 4px solid $Blue
+                        padding-left: 12px
+                    .img-grid
+                        display: grid
+                        grid-template-columns: repeat(2,1fr)
+                        grid-gap: 20px 15px
+                    .col-md
+                        position: relative
+                        box-shadow: rgb(0 0 0 / 7%) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px
+                        overflow: hidden
+                        border-radius: 10px
+                        &::before,&::after
+                            content: ''
+                            position: absolute
+                            top: 0
+                            bottom: 0
+                            left: 0
+                            right: 0
+                            pointer-events: none
+                            user-select: none
+                            z-index: 0
+                            transition: .4s ease
+                        &::before
+                            background: linear-gradient(to top, #000000b8 10%, #eee0 60%)
+                        &::after
+                            background: #066fc194
+                            opacity: 0
+                        .view-gallr
+                            position: absolute
+                            top: 50%
+                            left: 50%
+                            translate: -50% -50%
+                            z-index: 1
+                            filter: invert(1)
+                            transform: translateY(15px) scale(.7)
+                            opacity: 0
+                            transition: .4s ease
+                        &:hover
+                            &::after
+                                opacity: 1
+                            .view-gallr    
+                                opacity: 1
+                                transform: translateY(0px) scale(1)
+                    a
+                        display: block
+                        img
+                            width: 100%
+                            aspect-ratio: 1.8
+                            object-fit: cover

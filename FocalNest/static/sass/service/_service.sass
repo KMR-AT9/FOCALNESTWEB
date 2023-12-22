@@ -1,0 +1,201 @@
+.blogListingSecA
+    &.serviceListingSecA
+        .flex
+            .col
+                position: relative
+                &:hover
+                    figcaption
+                        color: initial
+                        button.explr-btn
+                            background: $LightBlue
+                figure
+                    img
+                        width: 100%
+                        aspect-ratio: 1.7
+                figcaption
+                    --varpadding: 18px
+                    --btnheight: 45px
+                    padding: var(--varpadding)
+                    .title
+                        font-size: 18px
+                        line-height: 1
+                        margin-bottom: 12px
+                        color: $Blue
+                        font-weight: 600
+                    p
+                        line-height: 1.3
+                        padding-bottom: calc(var(--btnheight) + var(--varpadding))
+                    button.explr-btn
+                        position: absolute
+                        bottom: 0
+                        left: 0
+                        right: 0
+                        margin: 0 var(--varpadding) var(--varpadding)
+                        appearance: none
+                        border: none
+                        background: $Blue
+                        color: $White
+                        font-family: inherit
+                        font-weight: inherit
+                        font-size: inherit
+                        line-height: 1
+                        height: var(--btnheight)
+                        width: auto
+                        cursor: pointer
+                        transition: var(--transanim)
+
+.blogDetailSecA
+    &.serviceDetailSecA
+        .flex
+            .colB
+                h4
+                    font-size: 22px
+                    font-weight: 600
+                    color: $Blue
+                    border-bottom: 1px solid $Blue
+                    margin-bottom: 20px
+                    padding-bottom: 12px
+                .gallery-wrap
+                    .col
+                        position: relative
+                        box-shadow: rgb(0 0 0 / 7%) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px
+                        overflow: hidden
+                        border-radius: 10px
+                        &::before,&::after
+                            content: ''
+                            position: absolute
+                            top: 0
+                            bottom: 0
+                            left: 0
+                            right: 0
+                            pointer-events: none
+                            user-select: none
+                            z-index: 0
+                            transition: .4s ease
+                        &::before
+                            background: linear-gradient(to top, #000000b8 10%, #eee0 60%)
+                        &::after
+                            background: #066fc194
+                            opacity: 0
+                        a
+                            display: block
+                        &:not(:last-child)
+                            margin-bottom: 20px
+                        figure
+                            overflow: hidden
+                            img
+                                width: 100%
+                                aspect-ratio: 1.8
+                                object-fit: cover   
+                        .title
+                            position: absolute
+                            bottom: 0
+                            left: 0
+                            right: 0
+                            padding: 25px
+                            z-index: 1
+                            color: $White
+                            transition: .4s ease
+                        .view-gallr
+                            position: absolute
+                            top: 50%
+                            left: 50%
+                            translate: -50% -50%
+                            z-index: 1
+                            filter: invert(1)
+                            transform: translateY(15px) scale(.7)
+                            opacity: 0
+                            transition: .4s ease
+                        &:hover
+                            &::after
+                                opacity: 1
+                            .title
+                                opacity: 0
+                            .view-gallr    
+                                opacity: 1
+                                transform: translateY(0px) scale(1)
+
+.blogListingSecB
+    &.serviceListingSecB
+        .more-service-slider
+            .owl-stage
+                display: flex
+                .owl-item
+                    height: auto
+            .owl-nav
+                --btnsize: 45px
+                --btnpos: 5rem
+                button.owl-prev,.owl-next
+                    height: var(--btnsize)
+                    width: var(--btnsize)
+                    border-radius: 50%
+                    display: flex
+                    align-items: center
+                    justify-content: center
+                    background: $Blue
+                    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px
+                    position: absolute
+                    top: 50%
+                    translate: 0 -50%
+                    img
+                        filter: invert(1)
+                        width: calc(var(--btnsize) * .2)
+                .owl-prev
+                    left: calc( var(--btnpos) / -1 )
+                .owl-next
+                    right: calc( var(--btnpos) / -1 )
+            .col
+                position: relative
+                height: 100%
+                --transanim: .4s ease
+                border: 2px solid #dbdedf
+                a
+                    display: block
+                    height: 100%
+                &:hover
+                    figure
+                        img
+                            transform: scale(1.05)
+                    figcaption
+                        color: initial
+                        button.explr-btn
+                            background: $LightBlue
+                figure
+                    overflow: hidden
+                    img
+                        width: 100%
+                        object-fit: cover
+                        transition: var(--transanim)
+                        aspect-ratio: 1.7
+                figcaption
+                    --varpadding: 18px
+                    --btnheight: 45px
+                    padding: var(--varpadding)
+                    .title
+                        font-size: 18px
+                        line-height: 1
+                        margin-bottom: 12px
+                        color: $Blue
+                        font-weight: 600
+                    p
+                        color: $Black
+                        line-height: 1.3
+                        padding-bottom: calc(var(--btnheight) + var(--varpadding))
+                    button.explr-btn
+                        position: absolute
+                        bottom: 0
+                        left: 0
+                        right: 0
+                        margin: 0 var(--varpadding) var(--varpadding)
+                        appearance: none
+                        border: none
+                        background: $Blue
+                        color: $White
+                        font-family: inherit
+                        font-weight: inherit
+                        font-size: inherit
+                        line-height: 1
+                        height: var(--btnheight)
+                        width: auto
+                        cursor: pointer
+                        transition: var(--transanim)
